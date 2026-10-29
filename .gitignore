@@ -1,0 +1,27 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.DotSettings.user
+TestResults/
+*.log
+publish/
+
+# Secrets and local config
+.env
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Real documents must never be committed
+samples/private/
+*.private.*
+
+# IDEs / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

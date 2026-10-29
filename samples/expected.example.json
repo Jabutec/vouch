@@ -1,0 +1,15 @@
+{
+  "file": "clean-company-invoice-01.pdf",
+  "supplierType": "company",
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass"
+  },
+  "highestLevelReached": 0
+}
