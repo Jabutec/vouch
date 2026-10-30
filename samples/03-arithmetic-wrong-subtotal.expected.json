@@ -1,0 +1,37 @@
+{
+  "file": "03-arithmetic-wrong-subtotal.pdf",
+  "description": "Lines sum to R27,500.00 but the subtotal states R28,500.00. VAT is consistent with the stated subtotal.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Northgate Demo Freight (Pty) Ltd",
+    "cipc": "2016/204871/07",
+    "vatNumber": "4120987654",
+    "invoiceNumber": "INV-2026-0420",
+    "invoiceDate": "2026-10-16",
+    "subtotal": 28500.0,
+    "vatAmount": 4275.0,
+    "total": 32775.0,
+    "bankAccount": "1234567890"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "fail",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": "none"
+}

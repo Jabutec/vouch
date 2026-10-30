@@ -1,0 +1,37 @@
+{
+  "file": "07-name-mismatch.pdf",
+  "description": "Bank account holder is a different name from the supplier, and the email domain does not match the company.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Summit Demo Tools (Pty) Ltd",
+    "cipc": "2014/998877/07",
+    "vatNumber": "4777788899",
+    "invoiceNumber": "SDT-5521",
+    "invoiceDate": "2026-10-17",
+    "subtotal": 8400.0,
+    "vatAmount": 1260.0,
+    "total": 9660.0,
+    "bankAccount": "7770004444"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "fail",
+    "consistency.emailDomain": "warn",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": "none"
+}

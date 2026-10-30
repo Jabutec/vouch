@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # Skips cleanly until a solution file exists in the repo
+      - name: Restore
+        if: ${{ hashFiles('**/*.sln', '**/*.slnx') != '' }}
+        run: dotnet restore
+
+      - name: Build
+        if: ${{ hashFiles('**/*.sln', '**/*.slnx') != '' }}
+        run: dotnet build --no-restore -c Release
+
+      - name: Test
+        if: ${{ hashFiles('**/*.sln', '**/*.slnx') != '' }}
+        run: dotnet test --no-build -c Release

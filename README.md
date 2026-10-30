@@ -2,17 +2,17 @@
 
 **Verify a business using its invoice, before you pay.**
 
-Vouch takes a supplier invoice, works out who the supplier claims to be, runs a layered set of checks on that business, and returns a verification report: what is consistent, what is confirmed, what is missing, and what you should check yourself.
+Drop in a supplier invoice and Vouch works out who the supplier claims to be, runs a layered set of checks on that business, and returns a verification report: what is consistent, what is confirmed, what is missing, and what to check yourself.
 
-> **Status:** planning and scaffolding. Nothing is built yet. See [`docs/plan.md`](docs/plan.md).
+> **Status:** Stage 1 (core and tests). See [`docs/plan.md`](docs/plan.md).
 
 ## Why
 
-Change-of-banking-details and fake-invoice fraud are a documented problem in South Africa. Most small businesses have no easy way to sanity-check a supplier before paying. Vouch is a learning project that explores how far a small, honest .NET service can get with that problem, using the stack South African organisations actually run: SQL Server, flat files, Excel and Sage/SAP-style data.
+Change-of-banking-details and fake-invoice fraud are a documented problem in South Africa, and most small businesses have no easy way to sanity-check a supplier before paying. Vouch is a learning project: a small, honest .NET product built in stages, using the kind of stack South African organisations actually run (SQL Server, flat files, Excel).
 
 ## How it reports
 
-No single "trust score". Every claim is shown with how far it has been verified:
+No single "trust score". Every claim shows how far it has been verified:
 
 | Level | Meaning |
 |---|---|
@@ -23,32 +23,35 @@ No single "trust score". Every claim is shown with how far it has been verified:
 
 Statuses: **Pass, Warn, Fail, Unverified, Not applicable**. "Unverified" is a normal result, not a failure.
 
-## Planned architecture
+## Built in stages
 
-- **Vouch.Api**: ASP.NET Core Web API (`POST /verifications`, `GET /verifications/{id}`, evidence endpoint)
-- **Vouch.Worker**: .NET Worker Service that watches a drop folder and parses PDF (text layer), CSV and Excel
-- **Vouch.Core**: canonical invoice model, `IBusinessCheck` implementations, provider interfaces
-- **Vouch.Infrastructure**: EF Core + SQL Server, parsers, provider adapters (mock first)
-- **Vouch.Tests**: xUnit tests driven by the sample documents in `samples/`
+Each stage ends with something that works. Stopping after any stage is a legitimate finish.
 
-One database (SQL Server), including an append-only audit table with a hash chain.
+| Stage | Adds | Projects |
+|---|---|---|
+| 1. Core | Parsing, checks, report, tests against `samples/`, optional tiny CLI | `Vouch.Core`, `Vouch.Tests` |
+| 2. API | ASP.NET Core Web API, validation, Swagger, integration tests | `Vouch.Api` |
+| 3. Database | EF Core + SQL Server, migrations, history checks (duplicate, first-seen, bank change) | `Vouch.Infrastructure` |
+| 4. Production habits | Logging, health checks, config and secrets, Dockerfile, CI, rate limiting, optional API key | n/a |
+| 5. Extras | Folder-intake worker, audit hash chain, front end, real registry adapters | `Vouch.Worker` |
 
 ## Getting started
 
-Prerequisites: .NET SDK (current LTS), Docker, Git.
+Prerequisites: .NET 10 SDK and Git. Docker is only needed from stage 3.
 
-```bash
-# 1. Create the .NET solution and projects (one-off)
-./scripts/scaffold.sh          # macOS / Linux / Git Bash
-# or
-./scripts/scaffold.ps1         # Windows PowerShell
+```powershell
+# create the solution and the stage 1 projects (re-run with -Stage 2, 3, 5 later)
+powershell -ExecutionPolicy Bypass -File scripts\scaffold.ps1
 
-# 2. Start SQL Server
-cp .env.example .env           # then set a strong MSSQL_SA_PASSWORD
-docker compose up -d
+dotnet build
+dotnet test
 ```
 
-## Project principles
+On macOS, Linux or Git Bash: `./scripts/scaffold.sh` (pass a stage number as the first argument for later stages).
+
+From stage 3: `cp .env.example .env`, set a strong `MSSQL_SA_PASSWORD`, then `docker compose up -d` (and `docker compose stop` when you are not working on the database).
+
+## Principles
 
 - Evidence over scraping: no scraping of government portals and no handling of anyone's credentials.
 - Every external lookup sits behind an adapter with an offline mock.
@@ -57,11 +60,7 @@ docker compose up -d
 
 ## Privacy
 
-Invoices contain personal and banking information (POPIA applies). Process locally, store extracted fields and hashes rather than original files by default, and keep real invoices out of this repository. See [`docs/popia-note.md`](docs/popia-note.md).
-
-## Roadmap
-
-See [`docs/plan.md`](docs/plan.md). Work is split into weekend-sized chunks with a stop rule: when the sample documents produce the expected reports and the README is complete, the project is finished.
+Invoices contain personal and banking information (POPIA applies). Store extracted fields and hashes rather than original files by default, and keep real invoices out of this repository. See [`docs/popia-note.md`](docs/popia-note.md).
 
 ## License
 

@@ -1,0 +1,37 @@
+{
+  "file": "06-malformed-cipc.pdf",
+  "description": "CIPC number has 5 digits in the middle block instead of 6 (format YYYY/NNNNNN/TT).",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Coastline Demo Supplies (Pty) Ltd",
+    "cipc": "2018/12345/07",
+    "vatNumber": "4301122334",
+    "invoiceNumber": "CS-90114",
+    "invoiceDate": "2026-10-13",
+    "subtotal": 5450.0,
+    "vatAmount": 817.5,
+    "total": 6267.5,
+    "bankAccount": "6660003333"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "fail",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": "none"
+}

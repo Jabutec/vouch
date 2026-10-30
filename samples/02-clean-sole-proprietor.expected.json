@@ -1,0 +1,37 @@
+{
+  "file": "02-clean-sole-proprietor.pdf",
+  "description": "Legitimate sole proprietor: no CIPC number, no VAT, plain invoice. Must NOT be flagged for missing VAT.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "soleProprietor",
+  "expectedParsed": {
+    "supplierName": "Sample Garden Services (owner: J Example)",
+    "cipc": null,
+    "vatNumber": null,
+    "invoiceNumber": "SG-0031",
+    "invoiceDate": "2026-10-12",
+    "subtotal": 3200.0,
+    "vatAmount": null,
+    "total": 3200.0,
+    "bankAccount": "4440002222"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "notApplicable",
+    "format.cipc": "notApplicable",
+    "format.vat": "notApplicable",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "notApplicable",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "notApplicable",
+    "vat.vendorMatch": "notApplicable",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": 0
+}

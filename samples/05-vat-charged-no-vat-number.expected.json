@@ -1,0 +1,37 @@
+{
+  "file": "05-vat-charged-no-vat-number.pdf",
+  "description": "Labelled a tax invoice and charges VAT, but shows no supplier VAT number.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Ridgeback Demo Print (Pty) Ltd",
+    "cipc": "2019/456123/07",
+    "vatNumber": null,
+    "invoiceNumber": "RB-2207",
+    "invoiceDate": "2026-10-14",
+    "subtotal": 3500.0,
+    "vatAmount": 525.0,
+    "total": 4025.0,
+    "bankAccount": "5550001111"
+  },
+  "expected": {
+    "document.requiredFields": "fail",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "fail",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": "none"
+}

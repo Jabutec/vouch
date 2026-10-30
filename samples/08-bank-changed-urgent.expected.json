@@ -1,0 +1,39 @@
+{
+  "file": "08-bank-changed-urgent.pdf",
+  "description": "Same supplier as file 01 but a different bank account, with change-of-details and urgency wording.",
+  "context": {
+    "mode": "after",
+    "seedHistoryFrom": [
+      "01-clean-company-vat.pdf"
+    ]
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Northgate Demo Freight (Pty) Ltd",
+    "cipc": "2016/204871/07",
+    "vatNumber": "4120987654",
+    "invoiceNumber": "INV-2026-0455",
+    "invoiceDate": "2026-10-27",
+    "subtotal": 25000.0,
+    "vatAmount": 3750.0,
+    "total": 28750.0,
+    "bankAccount": "9876543210"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "warn",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "fail",
+    "history.duplicate": "pass",
+    "history.firstSeen": "pass"
+  },
+  "highestLevelReached": 0
+}

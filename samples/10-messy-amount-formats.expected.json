@@ -1,0 +1,37 @@
+{
+  "file": "10-messy-amount-formats.pdf",
+  "description": "Correct invoice using mixed formats (R20000, R 40 000,00, R 6,000.00, R52900). Tests amount parsing.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Highveld Demo Catering (Pty) Ltd",
+    "cipc": "2012/334455/07",
+    "vatNumber": "4556677889",
+    "invoiceNumber": "HC-1188",
+    "invoiceDate": "2026-10-18",
+    "subtotal": 46000.0,
+    "vatAmount": 6900.0,
+    "total": 52900.0,
+    "bankAccount": "8880005555"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": 0
+}

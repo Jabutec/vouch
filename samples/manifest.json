@@ -1,0 +1,54 @@
+{
+  "runOrder": [
+    {
+      "file": "01-clean-company-vat.pdf",
+      "expected": "01-clean-company-vat.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "02-clean-sole-proprietor.pdf",
+      "expected": "02-clean-sole-proprietor.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "03-arithmetic-wrong-subtotal.pdf",
+      "expected": "03-arithmetic-wrong-subtotal.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "04-vat-rate-wrong.pdf",
+      "expected": "04-vat-rate-wrong.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "05-vat-charged-no-vat-number.pdf",
+      "expected": "05-vat-charged-no-vat-number.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "06-malformed-cipc.pdf",
+      "expected": "06-malformed-cipc.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "07-name-mismatch.pdf",
+      "expected": "07-name-mismatch.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "08-bank-changed-urgent.pdf",
+      "expected": "08-bank-changed-urgent.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "09-duplicate-invoice.pdf",
+      "expected": "09-duplicate-invoice.expected.json",
+      "heldBack": false
+    },
+    {
+      "file": "10-messy-amount-formats.pdf",
+      "expected": "10-messy-amount-formats.expected.json",
+      "heldBack": false
+    }
+  ]
+}

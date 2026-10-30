@@ -1,0 +1,37 @@
+{
+  "file": "04-vat-rate-wrong.pdf",
+  "description": "VAT charged is 16% of the subtotal instead of the standard rate. Totals are otherwise consistent.",
+  "context": {
+    "mode": "isolated",
+    "seedHistoryFrom": []
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Northgate Demo Freight (Pty) Ltd",
+    "cipc": "2016/204871/07",
+    "vatNumber": "4120987654",
+    "invoiceNumber": "INV-2026-0421",
+    "invoiceDate": "2026-10-16",
+    "subtotal": 27500.0,
+    "vatAmount": 4400.0,
+    "total": 31900.0,
+    "bankAccount": "1234567890"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "fail",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "notApplicable",
+    "history.duplicate": "pass",
+    "history.firstSeen": "warn"
+  },
+  "highestLevelReached": "none"
+}

@@ -1,0 +1,39 @@
+{
+  "file": "09-duplicate-invoice.pdf",
+  "description": "Same supplier, invoice number and amounts as file 01, resent on a later date.",
+  "context": {
+    "mode": "after",
+    "seedHistoryFrom": [
+      "01-clean-company-vat.pdf"
+    ]
+  },
+  "supplierType": "company",
+  "expectedParsed": {
+    "supplierName": "Northgate Demo Freight (Pty) Ltd",
+    "cipc": "2016/204871/07",
+    "vatNumber": "4120987654",
+    "invoiceNumber": "INV-2026-0412",
+    "invoiceDate": "2026-10-20",
+    "subtotal": 27500.0,
+    "vatAmount": 4125.0,
+    "total": 31625.0,
+    "bankAccount": "1234567890"
+  },
+  "expected": {
+    "document.requiredFields": "pass",
+    "document.arithmetic": "pass",
+    "document.vatRate": "pass",
+    "format.cipc": "pass",
+    "format.vat": "pass",
+    "format.bank": "pass",
+    "consistency.accountHolder": "pass",
+    "consistency.emailDomain": "pass",
+    "redflags.language": "pass",
+    "registry.cipcStatus": "unverified",
+    "vat.vendorMatch": "unverified",
+    "payment.bankChange": "pass",
+    "history.duplicate": "fail",
+    "history.firstSeen": "pass"
+  },
+  "highestLevelReached": 0
+}
