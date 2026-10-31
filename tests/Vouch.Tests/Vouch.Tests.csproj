@@ -19,4 +19,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Vouch.Core\Vouch.Core.csproj" />
+  </ItemGroup>
+
 </Project>
